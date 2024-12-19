@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.iyakstore.BuildConfig
 import com.example.iyakstore.adapter.ProductAdapter
 import com.example.iyakstore.model.Product
 
@@ -22,7 +23,7 @@ class FragmentHome: Fragment() {
 
     var list = ArrayList<Product>()
     private lateinit var recycler : RecyclerView
-    val new = "192.168.52.179"
+    val new = BuildConfig.IP_ADDRESS
     val url: String = "http://$new/store/api_product.php"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

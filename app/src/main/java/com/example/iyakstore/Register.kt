@@ -32,7 +32,7 @@ class Register: AppCompatActivity() {
         phone = findViewById(R.id.phone_tv_registerPage)
         login = findViewById(R.id.button_login_registerPage)
 
-        val ip = "192.168.52.179"
+        val ip = BuildConfig.IP_ADDRESS
         val registerUrl = "http://$ip/store/register.php"
 
         register.setOnClickListener{

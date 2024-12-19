@@ -16,7 +16,7 @@ class ActivityByCategory : AppCompatActivity() {
 
     private lateinit var recycler : RecyclerView
     var list = ArrayList<Product>()
-    val new = "192.168.52.179"
+    val new = BuildConfig.IP_ADDRESS
     val url: String = "http://$new/store/api_productId.php?cat_id="+ MyData.id_Category
 
     override fun onCreate(savedInstanceState: Bundle?) {
