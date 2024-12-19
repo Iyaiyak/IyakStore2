@@ -1,3 +1,6 @@
+import java.net.DatagramSocket
+import java.net.InetAddress
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -15,6 +18,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "IP_ADDRESS", "\""+getIPAddress()+"\"")
+    }
+
+    buildFeatures{
+        buildConfig = true
     }
 
     buildTypes {
@@ -35,7 +44,16 @@ android {
     }
 
 }
-
+fun getIPAddress(): String {
+    DatagramSocket().use { socket ->
+        socket.connect(InetAddress.getByName("8.8.8.8"), 10002)
+        val ip = socket.localAddress.hostAddress
+        if (ip != null) {
+            return ip
+        }
+    }
+    return ""
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)

@@ -13,6 +13,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.w3c.dom.Text
+import java.util.logging.Logger
 
 class Login: AppCompatActivity() {
 
@@ -32,8 +33,8 @@ class Login: AppCompatActivity() {
         password = findViewById(R.id.password_tv_loginPage)
         login = findViewById(R.id.button_login_loginPage)
 
-        val ip = "192.168.52.179"
-        val url: String = "http://$ip/store/login.php"
+        val ip = BuildConfig.IP_ADDRESS
+        val url= "http://$ip/store/login.php"
 
         login.setOnClickListener{
             val request:RequestQueue = Volley.newRequestQueue(applicationContext)
@@ -51,6 +52,7 @@ class Login: AppCompatActivity() {
                 { error ->
                     Log.d("errorApp", error.toString())
                 Toast.makeText(applicationContext, "Network Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Logger.getLogger("Login").warning("Network Error: ${error.message}")
                 })
             request.add(stringRequest)
             }
